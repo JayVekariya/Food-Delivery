@@ -6,7 +6,6 @@
 #include<conio.h>
 #include<string.h>
 #include<ctime>
-//#include<dos.h>
 #include<windows.h>
 
 using namespace std;
@@ -114,7 +113,8 @@ public:
 class MERCHANT: public NAMECHECKER
 {
 	protected:
-	int FOOD_KEY,Quantity1,Quantity2,Quantity3,Quantity4,Quantity5,Quantity6,Quantity7,Total;
+	int Quantity1,Quantity2,Quantity3,Quantity4,Quantity5,Quantity6,Quantity7,Total;
+	char FOOD_KEY;
 	int CALORIE,flag,PAKEING;
 	float SIZE_OF_food;
 	MERCHANT()
@@ -141,7 +141,7 @@ GET_DETAIL()
 	<<"------------------------------------------------------------------------\n\n";
 	cout<<"Enter Your choice : ";
 	cin>>FOOD_KEY;
-	if(FOOD_KEY>7)
+	if((int)FOOD_KEY>55)
 	{
 		cout<<endl;
         	cout<<"-----------------------------"<<endl;
@@ -154,7 +154,7 @@ GET_DETAIL()
 	}
 
    cout<<endl;
-     	if(FOOD_KEY==1)
+     	if((int)FOOD_KEY==49)
      	{
      		cin.ignore();
      		cout<<"Enter the Quantity : ";
@@ -164,7 +164,7 @@ GET_DETAIL()
      	
      	}
 
-    	 else if(FOOD_KEY==2)
+    	 else if((int)FOOD_KEY==50)
      	{
 			cin.ignore();
 			cout<<"\nEnter the Quantity : ";
@@ -174,7 +174,7 @@ GET_DETAIL()
      	
      	}
 
-     	else if(FOOD_KEY==3)
+     	else if((int)FOOD_KEY==51)
      	{
      		cin.ignore();
      		cout<<"\nEnter the Quantity : ";
@@ -184,7 +184,7 @@ GET_DETAIL()
     
      	}
 
-     	else if(FOOD_KEY==4)
+     	else if((int)FOOD_KEY==52)
      	{
      		cin.ignore();
      		cout<<"\nEnter the Quantity : ";
@@ -193,7 +193,7 @@ GET_DETAIL()
      		cout<<setw(40)<<"|| You Are order Vadapav: ||\n\n";
      	
     	 }
-     	else if(FOOD_KEY==5)
+     	else if((int)FOOD_KEY==53)
      	{
      		cin.ignore();
      		cout<<"\nEnter the Quantity : ";
@@ -203,7 +203,7 @@ GET_DETAIL()
      
      	}
 
-     	else if(FOOD_KEY==6)
+     	else if((int)FOOD_KEY==54)
      	{
      		cin.ignore();
      		cout<<"\nEnter the Quantity : ";
@@ -213,7 +213,7 @@ GET_DETAIL()
      	
      	}
 
-     	else if(FOOD_KEY==7)
+     	else if((int)FOOD_KEY==55)
      	{
      		cin.ignore();
      		cout<<"\nEnter the Quantity : ";
@@ -469,7 +469,8 @@ bool loginuser()
 int main()
 {
 	system("color 7c");
-	int i1,choice,ncount=0;;
+	int i1,ncount=0;
+	char choice;
 
 	cout<<setw(62);
     for(i1=0;i1<83;i1++)
@@ -501,15 +502,15 @@ int main()
 	 cout<<setw(107)<<"Enter your choice : ";
      cin>>choice;
    
-      if(choice!=1 && choice!=2 )
+    if((int)choice!=49 && (int)choice!=50)
 		 {
 			cout<<"\n\n";
 		 	cout<<setw(118)<<" OOPS !!! you entered a wrong choice : ";
 		    cout<<"\n\n\n";
 		    goto c;
-		}
+		} 
 		 
-     if(choice==1)
+     if((int)choice==49)
      {
      	string password;
      	char username[100],st[100];
@@ -531,7 +532,7 @@ int main()
 
 
 	 }
-	 else if(choice==2)
+	 else if((int)choice==50)
 	 {
 	 	bool status=loginuser();
 
@@ -554,12 +555,6 @@ int main()
 	 		
 	 		goto c;
 		 }
-		 else if(choice!=1 && choice!=2)
-		 {
-		 	cout<<"\n\n";
-		 	cout<<setw(117)<<" you entered wrong choice : ";
-		 	goto c;
-		 }
 		 else
 		 {
 		 	cout<<setw(110)<<"Succesfully Logged in !! ";
@@ -567,7 +562,10 @@ int main()
 		 	system("CLS");
 
 		 }
+		 
 	 }
+	 
+	 
 	 
 	system("color f9");
    	cout<<setw(62);
@@ -712,5 +710,3 @@ Back:
 	system("CLS");
 	main();
 }
-
-
