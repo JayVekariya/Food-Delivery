@@ -7,7 +7,6 @@
 #include<string.h>
 #include<ctime>
 #include<windows.h>
-
 using namespace std;
 
 class NAMECHECKER
@@ -121,7 +120,7 @@ class MERCHANT: public NAMECHECKER
 	{
 		Quantity1=0,Quantity2=0,Quantity3=0,Quantity4=0,Quantity5=0,Quantity6=0,Quantity7=0,Total=0;
 	}
-	
+
 public:
 GET_DETAIL()
 {
@@ -161,7 +160,7 @@ GET_DETAIL()
 			cin>>Quantity1;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order HotDog: ||\n\n";
-     	
+
      	}
 
     	 else if((int)FOOD_KEY==50)
@@ -171,7 +170,7 @@ GET_DETAIL()
 			cin>>Quantity2;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order Burger: ||\n\n";
-     	
+
      	}
 
      	else if((int)FOOD_KEY==51)
@@ -181,7 +180,7 @@ GET_DETAIL()
 			cin>>Quantity3;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order Dabeli: ||\n\n";
-    
+
      	}
 
      	else if((int)FOOD_KEY==52)
@@ -191,7 +190,7 @@ GET_DETAIL()
 			cin>>Quantity4;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order Vadapav: ||\n\n";
-     	
+
     	 }
      	else if((int)FOOD_KEY==53)
      	{
@@ -200,7 +199,7 @@ GET_DETAIL()
 			cin>>Quantity5;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order Puff: ||\n\n";
-     
+
      	}
 
      	else if((int)FOOD_KEY==54)
@@ -210,7 +209,7 @@ GET_DETAIL()
 			cin>>Quantity6;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order Frankie: ||\n\n";
-     	
+
      	}
 
      	else if((int)FOOD_KEY==55)
@@ -220,7 +219,7 @@ GET_DETAIL()
 			cin>>Quantity7;
 			cout<<"\n";
      		cout<<setw(40)<<"|| You Are order Sandwich: ||\n\n";
-    
+
      	}
 	 }
 
@@ -312,36 +311,31 @@ class BILL : public MERCHANT
 	    for(i1=0;i1<83;i1++)
 	     cout<<"*";
 	     cout<<"\n\n\n\n\n\n";
-     
-	}
 
+	}
 	void userdata()
 	{
 
        ofstream pf;
        pf.open("Order.txt",ios::app);
        pf<<"\n"<<setw(9);
-       for(int i1=0;i1<26;i1++)
-       pf<<"-";
        pf<<"\n"<<setw(35)<<" | *** Sunrise Hotel *** |\n";
        pf<<setw(9);
-       for(int i1=0;i1<26;i1++)
-       pf<<"-";
-       pf<<"\n\n";
+       pf<<"\n";
 
 		time_t tt;
         struct tm*DT;
         time(&tt);
         DT=localtime(&tt);
         pf<<"\nTime:  "<<asctime(DT);
-        pf<<"\n\n";
+        pf<<"\n";
 
-       pf<<"Name of Customer is : "<<Name_of_customer;
+       pf<<"Name of the Customer is : "<<Name_of_customer;
        pf<<"\n\n";
-       pf<<"Address of Customer is: "<<HA;
+       pf<<"Address of the Customer is: "<<HA;
        pf<<"\n\n";
-       pf<<"Customer MOBILE NUMBER is : "<<MN;
-       pf<<"\n\n\n";
+       pf<<"Customer's MOBILE NUMBER is : "<<MN;
+       pf<<"\n\n";
        pf<<"Order Given By Customer is : \n\n";
 
        	if(Quantity1>0)
@@ -400,6 +394,71 @@ class BILL : public MERCHANT
 		pf<<"\n\nTotal Money are : "<<Total<<" Rupees only :)\n\n\n";
 
    		 pf.close();
+   		 CheckUSER();
+	}
+
+	void CheckUSER(){
+		
+	static int q1,q2,q3,q4,q5,q6,q7;
+
+	 ofstream of,tf;
+	 ifstream ttf;
+	   ttf.open("Total Orders.txt");
+       of.open("Total Items Sold.csv");
+
+       if(!ttf){
+        q1=0;
+        q2=0;
+        q3=0;
+        q4=0;
+        q5=0;
+        q6=0;
+        q7=0;
+       }else{
+       ttf>>q1;
+       ttf>>q2;
+       ttf>>q3;
+       ttf>>q4;
+       ttf>>q5;
+       ttf>>q6;
+       ttf>>q7;
+
+       }
+       	ttf.close();
+    	tf.open("Total Orders.txt");
+
+       tf<<q1+Quantity1<<endl;
+       tf<<q2+Quantity2<<endl;
+       tf<<q3+Quantity3<<endl;
+       tf<<q4+Quantity4<<endl;
+       tf<<q5+Quantity5<<endl;
+       tf<<q6+Quantity6<<endl;
+       tf<<q7+Quantity7<<endl;
+
+			of<<"HotDog,";
+			of<<q1+Quantity1<<"\n";
+
+			of<<"Burger,";
+			of<<q2+Quantity2<<"\n";
+
+			of<<"Dabeli,";
+			of<<q3+Quantity3<<"\n";
+
+			of<<"Vadapav,";
+			of<<q4+Quantity4<<"\n";
+
+			of<<"Puff,";
+			of<<q5+Quantity5<<"\n";
+
+			of<<"Frankie,";
+			of<<q6+Quantity6<<"\n";
+
+			of<<"Sandwich,";
+			of<<q7+Quantity7<<"\n";
+
+
+   		 of.close();
+   		 tf.close();
 	}
 
 };
@@ -490,7 +549,7 @@ int main()
      for(i1=0;i1<21;i1++)
      cout<<"@";
      cout<<"\n";
-     
+
      cout<<setw(109)<<"@ press 1: New User @\n";
      cout<<setw(88)<<"@"<<setw(21)<<"@\n";
 	 cout<<setw(109)<<"@ press 2: Login    @\n";
@@ -498,18 +557,18 @@ int main()
      for(i1=0;i1<21;i1++)
      cout<<"@";
      cout<<"\n\n\n\n";
-  
+
 	 cout<<setw(107)<<"Enter your choice : ";
      cin>>choice;
-   
+
     if((int)choice!=49 && (int)choice!=50)
 		 {
 			cout<<"\n\n";
 		 	cout<<setw(118)<<" OOPS !!! you entered a wrong choice : ";
 		    cout<<"\n\n\n";
 		    goto c;
-		} 
-		 
+		}
+
      if((int)choice==49)
      {
      	string password;
@@ -552,7 +611,7 @@ int main()
      		for(i1=0;i1<32;i1++)
     		cout<<"!";
      		cout<<"\n\n";
-	 		
+
 	 		goto c;
 		 }
 		 else
@@ -562,11 +621,11 @@ int main()
 		 	system("CLS");
 
 		 }
-		 
+
 	 }
-	 
-	 
-	 
+
+
+
 	system("color f9");
    	cout<<setw(62);
     for(i1=0;i1<83;i1++)
@@ -585,7 +644,7 @@ int main()
      int flag=0,i=0,column,POWER=0,FLAG_HIS=0,Flag_for_SO=0,breaker=1,BACKOUT=0;
 
      BILL j;
-     
+
     cout<<endl;
 
     j.getname();
@@ -667,7 +726,7 @@ Back:
     	j.T();
     	cout<<"\n";
     	Sleep(300);
-    	
+
     	for(i=0;i<50;i++)
     	cout<<"=";
     	cout<<"\n\n";
@@ -676,23 +735,23 @@ Back:
     	j.bill();
     	cout<<"\n\n\n";
 		Sleep(300);
-		
+
     	cout<<setw(30)<<"GRAND TOTAL";
     	cout<<"\n";
     	Sleep(300);
     	for(i=0;i<50;i++)
     	cout<<"-";
-		
+
     	j.total();
     	cout<<"\n";
     	Sleep(300);
-    	
+
     	for(i=0;i<50;i++)
     	cout<<"-";
     	cout<<"\n";
     	cout<<"\n";
     	Sleep(300);
-    	
+
     	for(i=0;i<50;i++)
     	cout<<"=";
     	cout<<"\n\n";
@@ -710,3 +769,5 @@ Back:
 	system("CLS");
 	main();
 }
+
+
